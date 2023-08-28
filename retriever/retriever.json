@@ -1,0 +1,94 @@
+{
+    "memory": null,
+    "verbose": false,
+    "tags": null,
+    "metadata": null,
+    "combine_documents_chain": {
+        "memory": null,
+        "verbose": false,
+        "tags": null,
+        "metadata": null,
+        "input_key": "input_documents",
+        "output_key": "output_text",
+        "llm_chain": {
+            "memory": null,
+            "verbose": false,
+            "tags": null,
+            "metadata": null,
+            "prompt": {
+                "input_variables": [
+                    "context",
+                    "question"
+                ],
+                "output_parser": null,
+                "partial_variables": {},
+                "messages": [
+                    {
+                        "prompt": {
+                            "input_variables": [
+                                "context"
+                            ],
+                            "output_parser": null,
+                            "partial_variables": {},
+                            "template": "Use the following pieces of context to answer the users question. \nIf you don't know the answer, just say that you don't know, don't try to make up an answer.\n----------------\n{context}",
+                            "template_format": "f-string",
+                            "validate_template": true,
+                            "_type": "prompt"
+                        },
+                        "additional_kwargs": {}
+                    },
+                    {
+                        "prompt": {
+                            "input_variables": [
+                                "question"
+                            ],
+                            "output_parser": null,
+                            "partial_variables": {},
+                            "template": "{question}",
+                            "template_format": "f-string",
+                            "validate_template": true,
+                            "_type": "prompt"
+                        },
+                        "additional_kwargs": {}
+                    }
+                ],
+                "_type": "chat"
+            },
+            "llm": {
+                "model_name": "gpt-3.5-turbo",
+                "model": "gpt-3.5-turbo",
+                "request_timeout": null,
+                "max_tokens": null,
+                "stream": false,
+                "n": 1,
+                "temperature": 0.7,
+                "_type": "openai-chat"
+            },
+            "output_key": "text",
+            "output_parser": {
+                "_type": "default"
+            },
+            "return_final_only": true,
+            "llm_kwargs": {},
+            "_type": "llm_chain"
+        },
+        "document_prompt": {
+            "input_variables": [
+                "page_content"
+            ],
+            "output_parser": null,
+            "partial_variables": {},
+            "template": "{page_content}",
+            "template_format": "f-string",
+            "validate_template": true,
+            "_type": "prompt"
+        },
+        "document_variable_name": "context",
+        "document_separator": "\n\n",
+        "_type": "stuff_documents_chain"
+    },
+    "input_key": "query",
+    "output_key": "result",
+    "return_source_documents": true,
+    "_type": "retrieval_qa"
+}
