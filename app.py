@@ -16,22 +16,32 @@ result = False
 retriever = RetrievalQA.from_chain_type(
     llm=model,
     chain_type='stuff',
-    retriever=db.as_retriever(),
+    retriever=db.as_retriever(
+        search_kwargs={'score_threshold': .4}
+    ),
     return_source_documents=True
 )
 
 st.title('SPW QnA')
 prompt = st.text_input('Berikan Pertanyaan : ')
+btn = st.button('Submit')
+btn_status = False
+if btn:
+    btn_status = True
 if prompt:
     result = retriever({
         'query': prompt
     })
+    if result['result'].startswith('Maaf,'):
+        result['result'] = 'Model general tidak mengetahui jawaban yang ditanyakan oleh pengguna, silahkan mencari jawaban di <b>Jawaban Lainnya</b>'
 
 if result:
     st.subheader('Jawaban Utama')
-    st.write(result['result'])
+    st.write(result['result'], unsafe_allow_html=True)
+    st.divider()
     st.subheader('Jawaban Lainnya')
-    for res in result['source_documents']:
+    for i, res in enumerate(result['source_documents']):
+        st.write('\n\n')
+        st.write(
+            f'<b><u>Jawaban Alternatif {i + 1}</b></u>', unsafe_allow_html=True)
         st.write(res.page_content)
-        st.write('\n')
-        st.divider()
