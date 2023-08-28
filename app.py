@@ -22,9 +22,10 @@ retriever = RetrievalQA.from_chain_type(
 
 st.title('SPW QnA')
 prompt = st.text_input('Berikan Pertanyaan : ')
-result = retriever({
-    'query': prompt
-})
+if prompt:
+    result = retriever({
+        'query': prompt
+    })
 
 if result:
     st.subheader('Jawaban Utama')
