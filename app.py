@@ -33,3 +33,4 @@ if result:
     for res in result['source_documents']:
         st.write(res.page_content)
         st.write('\n')
+        st.divider()
