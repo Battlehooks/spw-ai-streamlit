@@ -22,7 +22,8 @@ retriever = RetrievalQA.from_chain_type(
     return_source_documents=True
 )
 
-st.title('SPW QnA')
+st.title('AI SPW / PKK / KWU / Technopreneur')
+st.write('Disiapkan oleh https://www.gaeni.org dan SEAQIS')
 prompt = st.text_input('Berikan Pertanyaan : ')
 btn = st.button('Submit')
 btn_status = False
