@@ -4,6 +4,12 @@ from langchain.vectorstores import FAISS
 from langchain.chat_models import ChatOpenAI
 from langchain.embeddings import OpenAIEmbeddings
 from db import InsertData
+import socket
+
+hostname = socket.gethostname()
+ip_addr = socket.gethostbyname(hostname)
+print(f'Hostname : {hostname}')
+print(f'IP Address : {ip_addr}')
 
 api_key = st.secrets['OPENAI_API_KEY']
 model_name = 'ft:gpt-3.5-turbo-0613:personal::7sLvXR18'
