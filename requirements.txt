@@ -3,3 +3,5 @@ openai
 streamlit
 faiss-cpu
 tiktoken
+mysql-connector
+datetime

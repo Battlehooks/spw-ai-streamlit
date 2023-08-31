@@ -3,7 +3,7 @@ from langchain.chains import RetrievalQA
 from langchain.vectorstores import FAISS
 from langchain.chat_models import ChatOpenAI
 from langchain.embeddings import OpenAIEmbeddings
-import openai
+from db import InsertData
 
 api_key = st.secrets['OPENAI_API_KEY']
 model_name = 'ft:gpt-3.5-turbo-0613:personal::7sLvXR18'
@@ -17,12 +17,14 @@ retriever = RetrievalQA.from_chain_type(
     llm=model,
     chain_type='stuff',
     retriever=db.as_retriever(
-        search_kwargs={'score_threshold': .4}
+        search_kwargs={'score_threshold': .35}
     ),
     return_source_documents=True
 )
 
 st.title('AI SPW / PKK / KWU / Technopreneur')
+st.write('<small>V1 - September 3rd 2023 Version</small>',
+         unsafe_allow_html=True)
 st.write('Disiapkan oleh https://www.gaeni.org dan SEAQIS')
 prompt = st.text_input('Berikan Pertanyaan : ')
 btn = st.button('Submit')
@@ -35,7 +37,7 @@ if prompt:
     })
     if result['result'].startswith('Maaf,'):
         result['result'] = 'Model general tidak mengetahui jawaban yang ditanyakan oleh pengguna, silahkan mencari jawaban di <b>Jawaban Lainnya</b>'
-
+    result['result'] = result['result'].replace('\n', '<br />')
 if result:
     st.subheader('Jawaban Utama')
     st.write(result['result'], unsafe_allow_html=True)
@@ -46,3 +48,5 @@ if result:
         st.write(
             f'<b><u>Jawaban Alternatif {i + 1}</b></u>', unsafe_allow_html=True)
         st.write(res.page_content)
+    answer = InsertData(prompt)
+    answer.commit()
