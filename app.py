@@ -28,7 +28,7 @@ retriever = RetrievalQA.from_chain_type(
     return_source_documents=True
 )
 
-st.title('AI SPW / PKK / KWU / Technopreneur')
+st.title('AI SPW / PKK / KWU / Technopreneur / GCC 4')
 st.write('<small>V1 - September 3rd 2023 Version</small>',
          unsafe_allow_html=True)
 st.write('Disiapkan oleh https://www.gaeni.org dan SEAQIS')

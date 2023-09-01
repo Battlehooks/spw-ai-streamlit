@@ -13,13 +13,15 @@ class InsertData:
         )
         self.cursor = self.mydb.cursor()
         self.question = question
+        self.total_answer = total_answer
 
     def commit(self):
         timestamp = datetime.now()
         question = self.question
         year, month, day, hour, minute, second = timestamp.year, timestamp.month, timestamp.day, timestamp.hour, timestamp.minute, timestamp.second
-        query = 'INSERT INTO pertanyaan (pertanyaan, timestamp) VALUES (%s, %s)'
-        value = (question, f"{year}-{month}-{day}-{hour}-{minute}-{second}")
+        query = 'INSERT INTO pertanyaan-jawaban (timestamp, pertanyaan, total_jawaban) VALUES (%s, %s)'
+        value = (f"{year}-{month}-{day}-{hour}-{minute}-{second}",
+                 question, self.total_answer)
         self.cursor.execute(query, value)
         self.mydb.commit()
         print(f'{self.cursor.rowcount} record inserted.')
