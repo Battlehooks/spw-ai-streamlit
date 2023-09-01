@@ -4,19 +4,13 @@ from langchain.vectorstores import FAISS
 from langchain.chat_models import ChatOpenAI
 from langchain.embeddings import OpenAIEmbeddings
 from db import InsertData
-import socket
-
-hostname = socket.gethostname()
-ip_addr = socket.gethostbyname(hostname)
-print(f'Hostname : {hostname}')
-print(f'IP Address : {ip_addr}')
 
 api_key = st.secrets['OPENAI_API_KEY']
 model_name = 'ft:gpt-3.5-turbo-0613:personal::7sLvXR18'
 
 embeddings = OpenAIEmbeddings(openai_api_key=api_key)
 db = FAISS.load_local('retriever/FAISS_SPW', embeddings=embeddings)
-model = ChatOpenAI(openai_api_key=api_key)
+model = ChatOpenAI(openai_api_key=api_key, model=model_name)
 result = False
 
 retriever = RetrievalQA.from_chain_type(
@@ -41,8 +35,6 @@ if prompt:
     result = retriever({
         'query': prompt
     })
-    if result['result'].startswith('Maaf,'):
-        result['result'] = 'Model general tidak mengetahui jawaban yang ditanyakan oleh pengguna, silahkan mencari jawaban di <b>Jawaban Lainnya</b>'
     result['result'] = result['result'].replace('\n', '<br />')
 if result:
     # st.subheader('Jawaban Utama')
