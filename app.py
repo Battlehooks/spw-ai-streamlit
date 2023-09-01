@@ -57,5 +57,5 @@ if result:
     if len(result['source_documents']) < 1:
         st.write(
             'Tidak ada jawaban yang relevan dari pertanyaan tersebut terkait SPW.')
-    answer = InsertData(prompt)
+    answer = InsertData(prompt, len(result['source_documents']))
     answer.commit()

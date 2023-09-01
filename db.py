@@ -4,7 +4,7 @@ import streamlit as st
 
 
 class InsertData:
-    def __init__(self, question):
+    def __init__(self, question, total_answer):
         self.mydb = mysql.connector.connect(
             host=st.secrets['db_host'],
             user=st.secrets['db_user'],
