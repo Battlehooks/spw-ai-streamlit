@@ -19,7 +19,7 @@ class InsertData:
         timestamp = datetime.now()
         question = self.question
         year, month, day, hour, minute, second = timestamp.year, timestamp.month, timestamp.day, timestamp.hour, timestamp.minute, timestamp.second
-        query = 'INSERT INTO pertanyaan-jawaban (timestamp, pertanyaan, total_jawaban) VALUES (%s, %s, %s)'
+        query = 'INSERT INTO "pertanyaan-jawaban" (timestamp, pertanyaan, total_jawaban) VALUES (%s, %s, %s)'
         value = (f"{year}-{month}-{day}-{hour}-{minute}-{second}",
                  question, self.total_answer)
         self.cursor.execute(query, value)
