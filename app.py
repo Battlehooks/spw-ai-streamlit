@@ -45,14 +45,17 @@ if prompt:
         result['result'] = 'Model general tidak mengetahui jawaban yang ditanyakan oleh pengguna, silahkan mencari jawaban di <b>Jawaban Lainnya</b>'
     result['result'] = result['result'].replace('\n', '<br />')
 if result:
-    st.subheader('Jawaban Utama')
-    st.write(result['result'], unsafe_allow_html=True)
-    st.divider()
-    st.subheader('Jawaban Lainnya')
+    # st.subheader('Jawaban Utama')
+    # st.write(result['result'], unsafe_allow_html=True)
+    # st.divider()
+    st.subheader('Jawaban')
     for i, res in enumerate(result['source_documents']):
         st.write('\n\n')
         st.write(
-            f'<b><u>Jawaban Alternatif {i + 1}</b></u>', unsafe_allow_html=True)
+            f'<b><u>Jawaban {i + 1}</b></u>', unsafe_allow_html=True)
         st.write(res.page_content)
+    if len(result['source_documents']) < 1:
+        st.write(
+            'Tidak ada jawaban yang relevan dari pertanyaan tersebut terkait SPW.')
     answer = InsertData(prompt)
     answer.commit()

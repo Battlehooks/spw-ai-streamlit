@@ -1,7 +1,6 @@
 import mysql.connector
 from datetime import datetime
 import streamlit as st
-import socket
 
 
 class InsertData:
@@ -24,9 +23,3 @@ class InsertData:
         self.cursor.execute(query, value)
         self.mydb.commit()
         print(f'{self.cursor.rowcount} record inserted.')
-
-
-hostname = socket.gethostname()
-ip_addr = socket.gethostbyname(hostname)
-print(f'Hostname : {hostname}')
-print(f'IP Address : {ip_addr}')
