@@ -22,10 +22,41 @@ retriever = RetrievalQA.from_chain_type(
     return_source_documents=True
 )
 
+st.markdown('''
+    <style>
+            small {
+            font-size: 13px !important;
+            }
+''', unsafe_allow_html=True)
+
+
+def answer_question(result):
+    st.subheader('Jawaban Utama')
+    st.write(result['source_documents']
+             [0].page_content, unsafe_allow_html=True)
+    st.divider()
+    st.subheader('Jawaban dari AI')
+    st.write('''
+        <small> Keterangan : Jawaban dari AI adalah jawaban yang diekstrapolasi oleh GPT 3.5 dari database kami.</small>
+    ''', unsafe_allow_html=True)
+    st.write(result['result'], unsafe_allow_html=True)
+    if len(result['source_documents']) > 1:
+        st.divider()
+        st.subheader('Jawaban Lainnya')
+        for i, res in enumerate(result['source_documents']):
+            st.write('\n\n')
+            st.write(
+                f'<b><u>Jawaban {i + 1}</b></u>', unsafe_allow_html=True)
+            st.write(res.page_content)
+
+
 st.title('AI SPW / PKK / KWU / Technopreneur / GCC 4')
-st.write('<small>V1 - September 3rd 2023 Version</small>',
-         unsafe_allow_html=True)
-st.write('Disiapkan oleh https://www.gaeni.org dan SEAQIS')
+st.write(
+    '''
+    <small>v1.01 - September 3rd 2023 Version</small> <br />
+    <small>Disiapkan oleh https://www.gaeni.org dan SEAQIS</small>
+    ''',
+    unsafe_allow_html=True)
 prompt = st.text_input('Berikan Pertanyaan : ')
 btn = st.button('Submit')
 btn_status = False
@@ -35,19 +66,11 @@ if prompt:
     result = retriever({
         'query': prompt
     })
-    result['result'] = result['result'].replace('\n', '<br />')
 if result:
-    # st.subheader('Jawaban Utama')
-    # st.write(result['result'], unsafe_allow_html=True)
-    # st.divider()
-    st.subheader('Jawaban')
-    for i, res in enumerate(result['source_documents']):
-        st.write('\n\n')
-        st.write(
-            f'<b><u>Jawaban {i + 1}</b></u>', unsafe_allow_html=True)
-        st.write(res.page_content)
     if len(result['source_documents']) < 1:
         st.write(
             'Tidak ada jawaban yang relevan dari pertanyaan tersebut terkait SPW.')
+    else:
+        answer_question(result)
     answer = InsertData(prompt, len(result['source_documents']))
     answer.commit()
