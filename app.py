@@ -72,5 +72,6 @@ if result:
             'Tidak ada jawaban yang relevan dari pertanyaan tersebut terkait SPW.')
     else:
         answer_question(result)
-    answer = InsertData(prompt, len(result['source_documents']))
-    answer.commit()
+        answer = InsertData(prompt, len(
+            result['source_documents']), result['result'])
+        answer.commit()
