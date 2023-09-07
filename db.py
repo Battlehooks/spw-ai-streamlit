@@ -31,7 +31,7 @@ class InsertData:
         duplicated = self.check_duplicate()
         if duplicated > 0:
             return
-        query = 'INSERT INTO pertanyaan_jawaban (timestamp, pert1anyaan, total_jawaban, jawaban_ai, token_pertanyaan, token_jawaban) VALUES (%s, %s, %s, %s, %s, %s)'
+        query = 'INSERT INTO pertanyaan_jawaban (timestamp, pertanyaan, total_jawaban, jawaban_ai, token_pertanyaan, token_jawaban) VALUES (%s, %s, %s, %s, %s, %s)'
         value = (f"{year}-{month}-{day}-{hour}-{minute}-{second}",
                  question, self.total_answer, self.jawaban_ai, token_pertanyaan, token_jawaban)
         self.cursor.execute(query, value)
