@@ -19,7 +19,7 @@ retriever = RetrievalQA.from_chain_type(
     llm=model,
     chain_type='stuff',
     retriever=db.as_retriever(
-        search_kwargs={'k': 4, 'score_threshold': .32}
+        search_kwargs={'k': 7, 'score_threshold': .32}
     ),
     return_source_documents=True
 )
