@@ -4,6 +4,7 @@ from langchain.vectorstores import FAISS
 from langchain.chat_models import ChatOpenAI
 from langchain.embeddings import OpenAIEmbeddings
 from db import InsertData
+import os
 
 api_key = st.secrets['OPENAI_API_KEY']
 model_name = 'ft:gpt-3.5-turbo-0613:personal::7sLvXR18'
@@ -11,14 +12,14 @@ model_name = 'ft:gpt-3.5-turbo-0613:personal::7sLvXR18'
 embeddings = OpenAIEmbeddings(openai_api_key=api_key)
 db = FAISS.load_local('retriever/FAISS_SPW', embeddings=embeddings)
 model = ChatOpenAI(openai_api_key=api_key, model=model_name,
-                   temperature=0.18)
+                   temperature=0.11)
 result = False
 
 retriever = RetrievalQA.from_chain_type(
     llm=model,
     chain_type='stuff',
     retriever=db.as_retriever(
-        search_kwargs={'score_threshold': .32}
+        search_kwargs={'k': 3, 'score_threshold': .32}
     ),
     return_source_documents=True
 )
@@ -33,8 +34,9 @@ st.markdown('''
 
 def answer_question(result):
     st.subheader('Jawaban Utama')
-    st.write(result['source_documents']
-             [0].page_content, unsafe_allow_html=True)
+    primary = result['source_documents'][0].page_content
+    primary = primary.split('[SEP]')[-1].strip()
+    st.write(primary, unsafe_allow_html=True)
     st.divider()
     st.subheader('Jawaban dari AI')
     st.write('''
@@ -45,14 +47,17 @@ def answer_question(result):
     if len(result['source_documents']) > 1:
         st.divider()
         st.subheader('Jawaban Lainnya')
-        for i, res in enumerate(result['source_documents']):
+        for i, res in enumerate(result['source_documents'][1:]):
             st.write('\n\n')
             st.write(
                 f'<b><u>Jawaban {i + 1}</b></u>', unsafe_allow_html=True)
-            st.write(res.page_content)
+            text = res.page_content.split('[SEP]')[-1]
+            text = text.strip()
+            st.write(text)
 
 
-st.title('AI SPW / PKK / KWU / Technopreneur / GCC 4')
+st.title('GCC 4 AI')
+st.write('Technopreneur + Hukum + Perikanan + Peternakan Kambing')
 st.write(
     '''
     <small>v1.01 - September 3rd 2023 Version</small> <br />
