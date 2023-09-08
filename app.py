@@ -77,9 +77,9 @@ if result:
     if len(result['source_documents']) < 1:
         st.write(
             'Tidak ada jawaban yang relevan dari pertanyaan tersebut.')
-    # elif 'tidak tahu' in result['result'][:20]:
-    #     st.write(
-    #         'Tidak ada jawaban yang relevan dari pertanyaan tersebut.')
+    elif 'tidak tahu' in result['result'][:20]:
+        st.write(
+            'Tidak ada jawaban yang relevan dari pertanyaan tersebut.')
     else:
         answer_question(result)
         answer = InsertData(prompt, len(
