@@ -56,7 +56,7 @@ def answer_question(result):
             st.write(text)
 
 
-st.title('GCC 4 AI')
+st.title('GemaGPT')
 st.write('Technopreneur + Hukum + Perikanan + Peternakan Kambing')
 st.write(
     '''
