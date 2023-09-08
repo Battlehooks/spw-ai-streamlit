@@ -12,7 +12,7 @@ model_name = 'ft:gpt-3.5-turbo-0613:personal::7sLvXR18'
 embeddings = OpenAIEmbeddings(openai_api_key=api_key)
 db = FAISS.load_local('retriever/FAISS_SPW', embeddings=embeddings)
 model = ChatOpenAI(openai_api_key=api_key, model=model_name,
-                   temperature=0.07)
+                   temperature=0.06)
 result = False
 
 retriever = RetrievalQA.from_chain_type(
@@ -60,7 +60,7 @@ st.title('GCC 4 AI')
 st.write('Technopreneur + Hukum + Perikanan + Peternakan Kambing')
 st.write(
     '''
-    <small>v1.11 - September 3rd 2023 Version</small> <br />
+    <small>v1.11 - September 8th 2023 Version</small> <br />
     <small>Disiapkan oleh https://www.gaeni.org dan SEAQIS</small>
     ''',
     unsafe_allow_html=True)
@@ -76,7 +76,7 @@ if prompt:
 if result:
     if len(result['source_documents']) < 1:
         st.write(
-            'Tidak ada jawaban yang relevan dari pertanyaan tersebut terkait SPW.')
+            'Tidak ada jawaban yang relevan dari pertanyaan tersebut.')
     else:
         answer_question(result)
         answer = InsertData(prompt, len(
