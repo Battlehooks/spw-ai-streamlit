@@ -60,7 +60,7 @@ st.title('GCC 4 AI')
 st.write('Technopreneur + Hukum + Perikanan + Peternakan Kambing')
 st.write(
     '''
-    <small>v1.01 - September 3rd 2023 Version</small> <br />
+    <small>v1.11 - September 3rd 2023 Version</small> <br />
     <small>Disiapkan oleh https://www.gaeni.org dan SEAQIS</small>
     ''',
     unsafe_allow_html=True)
