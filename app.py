@@ -57,7 +57,7 @@ def answer_question(result):
 
 
 st.title('GemaGPT')
-st.write('Technopreneur + Hukum + Perikanan + Peternakan Kambing')
+st.write('Technopreneur + Hukum + Perikanan + Peternakan Kambing & Domba')
 st.write(
     '''
     <small>v1.11 - September 8th 2023 Version</small> <br />
