@@ -57,10 +57,14 @@ def answer_question(result):
 
 
 st.title('GemaGPT')
-st.write('Technopreneur + Hukum + Perikanan + Peternakan Kambing & Domba')
+st.write('Technopreneur : Gatot Hari Priowirjanto + Astri')
+st.write('Hukum : Enni Soerjati')
+st.write('Perikanan : Siswoyo + Pranasiswa + UNPAD')
+st.write('Kambing dan Domba  : Achmad + Anifa + Misno')
+st.write('STEM : Indrawati')
 st.write(
     '''
-    <small>v1.11 - September 8th 2023 Version</small> <br />
+    <small>v1.21 - September 8th 2023 Version</small> <br />
     <small>Disiapkan oleh https://www.gaeni.org dan SEAQIS</small>
     ''',
     unsafe_allow_html=True)
@@ -77,9 +81,17 @@ if result:
     if len(result['source_documents']) < 1:
         st.write(
             'Tidak ada jawaban yang relevan dari pertanyaan tersebut.')
-    elif 'tidak tahu' in result['result'][:20]:
+    elif 'tidak tahu' in result['result'][:20].lower():
         st.write(
             'Tidak ada jawaban yang relevan dari pertanyaan tersebut.')
+    elif 'sorry' in result['result'].lower():
+        st.write(
+            'Berikan pertanyaan yang lebih spesifik.'
+        )
+    elif result['result'].lower() == prompt.lower():
+        st.write(
+            'Berikan pertanyaan yang lebih spesifik dan tepat.'
+        )
     else:
         answer_question(result)
         answer = InsertData(prompt, len(
