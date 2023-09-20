@@ -16,8 +16,6 @@ cache_embed = CacheBackedEmbeddings.from_bytes_store(embeddings, fs, namespace =
 db = FAISS.load_local('retriever/FAISS_SPW', embeddings=cache_embed)
 model = ChatOpenAI(openai_api_key=api_key, model=model_name,
                    temperature=0.06)
-if 'ran' not in st.session_state :
-    st.session_state['ran'] = 49
 
 retriever = RetrievalQA.from_chain_type(
     llm=model,
@@ -58,10 +56,6 @@ def answer_question(result):
             text = res.page_content.split('[SEP]')[-1]
             text = text.strip()
             st.write(text)
-
-def limited() :
-    st.title('GemaGPT')
-    st.title('Anda telah mencapai limit, silahkan tunggu beberapa saat lagi!')
 
 def main() :
     st.title('GemaGPT')
@@ -107,7 +101,4 @@ def main() :
             answer = InsertData(prompt, len(
                 result['source_documents']), result['result'])
             answer.commit()
-if st.session_state['ran'] > 50 :
-    limited()
-else :
-    main()
+main()
