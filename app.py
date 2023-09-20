@@ -80,7 +80,6 @@ def main() :
         result = retriever({
             'query': prompt
         })
-        st.session_state['ran'] += 1
     if result:
         if len(result['source_documents']) < 1:
             st.write(
