@@ -14,8 +14,7 @@ fs = LocalFileStore('retriever/cache_embed')
 embeddings = OpenAIEmbeddings(openai_api_key=api_key)
 cache_embed = CacheBackedEmbeddings.from_bytes_store(embeddings, fs, namespace = embeddings.model)
 db = FAISS.load_local('retriever/FAISS_SPW', embeddings=cache_embed)
-model = ChatOpenAI(openai_api_key=api_key, model=model_name,
-                   temperature=0.06)
+model = ChatOpenAI(openai_api_key=api_key, temperature=0.06)
 
 retriever = RetrievalQA.from_chain_type(
     llm=model,

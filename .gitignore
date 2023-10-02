@@ -1,3 +1,4 @@
 .streamlit/secrets.toml
 retriever/spw/
 retriever/spw.zip
+update.py
