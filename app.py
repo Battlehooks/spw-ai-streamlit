@@ -57,15 +57,16 @@ def answer_question(result):
             st.write(text)
 
 def main() :
-    st.title('GemaGPT')
-    st.write('Technopreneur : Gatot Hari Priowirjanto + Astri')
-    st.write('Hukum : Enni Soerjati')
-    st.write('Perikanan : Siswoyo + Pranasiswa + UNPAD')
-    st.write('Kambing dan Domba  : Achmad + Anifa + Misno')
+    st.title('GEMA-GPT')
+    st.write('AI ini adalah versi beta dalam rangka melengkapi data set yang akan kita kompilasi dalam sistem yg kembangkan')
+    st.write('Technopreneur : Gatot Hari Priowirjanto, Tim Guru SPW, mahasiswa Golden Tiket PENS')
+    st.write('Hukum : Enni Soerjati, Carolina')
+    st.write('Perikanan : Siswoyo, Tim Mahasiswa SEAMEO QIS UNPAD - Eros, Aisiah, Rahma, Rafif, Mira, Abian, Bagus, Aidil, Rohmad dkk')
+    st.write('Peternakan  : Achmad, Mahasiswa PENS - Anifa, Trifosha, dan Industri')
     st.write('STEM : Indrawati')
     st.write(
         '''
-        <small>v1.21 - September 8th 2023 Version</small> <br />
+        <small>v1.21 - October 4th 2023 Version</small> <br />
         <small>Disiapkan oleh https://www.gaeni.org dan SEAQIS</small>
         ''',
         unsafe_allow_html=True)
