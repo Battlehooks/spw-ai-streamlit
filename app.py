@@ -37,36 +37,36 @@ def answer_question(result):
     st.subheader('Jawaban Utama')
     primary = result['source_documents'][0].page_content
     primary = primary.split('[SEP]')[-1].strip()
-    st.write(primary, unsafe_allow_html=True)
+    st.markdown(primary, unsafe_allow_html=True)
     st.divider()
     st.subheader('Jawaban dari AI')
-    st.write('''
+    st.markdown('''
         <small> Keterangan : Jawaban dari AI adalah jawaban yang diekstrapolasi oleh GPT 3.5 dari database kami.</small> <br />
         <small> Sehingga akurasi dalam ilmu pengetahuan mutlak akan sangat rendah dan kemungkinan tidak akurat. </small> 
     ''', unsafe_allow_html=True)
-    st.write(result['result'], unsafe_allow_html=True)
+    st.markdown(result['result'], unsafe_allow_html=True)
     if len(result['source_documents']) > 1:
         st.divider()
         st.subheader('Jawaban Lainnya')
         for i, res in enumerate(result['source_documents'][1:]):
-            st.write('\n\n')
-            st.write(
+            st.markdown('\n\n')
+            st.markdown(
                 f'<b><u>Jawaban {i + 1}</b></u>', unsafe_allow_html=True)
             text = res.page_content.split('[SEP]')[-1]
             text = text.strip()
-            st.write(text)
+            st.markdown(text)
 
 def main() :
     st.title('GEMA-GPT')
-    st.write('AI ini adalah versi beta dalam rangka melengkapi data set yang akan kita kompilasi dalam sistem yg kembangkan')
-    st.write('Technopreneur : Gatot Hari Priowirjanto, Tim Guru SPW, mahasiswa Golden Tiket PENS')
-    st.write('Hukum : Enni Soerjati, Carolina')
-    st.write('Perikanan : Siswoyo, Tim Mahasiswa SEAMEO QIS UNPAD - Eros, Aisiah, Rahma, Rafif, Mira, Abian, Bagus, Aidil, Rohmad dkk')
-    st.write('Peternakan  : Achmad, Mahasiswa PENS - Anifa, Trifosha, dan Industri')
-    st.write('STEM : Indrawati')
-    st.write(
+    st.markdown('AI ini adalah versi beta dalam rangka melengkapi data set yang akan kita kompilasi dalam sistem yg kembangkan')
+    st.markdown('Technopreneur : Gatot Hari Priowirjanto, Tim Guru SPW, mahasiswa Golden Tiket PENS')
+    st.markdown('Hukum : Enni Soerjati, Carolina')
+    st.markdown('Perikanan : Siswoyo, Tim Mahasiswa SEAMEO QIS UNPAD - Eros, Aisiah, Rahma, Rafif, Mira, Abian, Bagus, Aidil, Rohmad dkk')
+    st.markdown('Peternakan  : Achmad, Mahasiswa PENS - Anifa, Trifosha, dan Industri')
+    st.markdown('STEM : Indrawati')
+    st.markdown(
         '''
-        <small>v1.21 - October 4th 2023 Version</small> <br />
+        <small>v1.31 - October 15th 2023 Version</small> <br />
         <small>Disiapkan oleh https://www.gaeni.org dan SEAQIS</small>
         ''',
         unsafe_allow_html=True)
@@ -82,17 +82,17 @@ def main() :
         })
     if result:
         if len(result['source_documents']) < 1:
-            st.write(
+            st.markdown(
                 'Tidak ada jawaban yang relevan dari pertanyaan tersebut.')
         elif 'tidak tahu' in result['result'][:20].lower():
-            st.write(
+            st.markdown(
                 'Tidak ada jawaban yang relevan dari pertanyaan tersebut.')
         elif 'sorry' in result['result'].lower():
-            st.write(
+            st.markdown(
                 'Berikan pertanyaan yang lebih spesifik.'
             )
         elif result['result'].lower() == prompt.lower():
-            st.write(
+            st.markdown(
                 'Berikan pertanyaan yang lebih spesifik dan tepat.'
             )
         else:
