@@ -58,15 +58,17 @@ def answer_question(result):
 
 def main() :
     st.title('GEMA-GPT')
-    st.markdown('AI ini adalah versi beta dalam rangka melengkapi data set yang akan kita kompilasi dalam sistem yg kembangkan')
+    st.markdown('AI ini adalah versi beta dalam rangka melengkapi data set yang akan kita kompilasi dalam sistem yang dikembangkan sampai akhir Desember 2023')
     st.markdown('Technopreneur : Gatot Hari Priowirjanto, Tim Guru SPW, mahasiswa Golden Tiket PENS')
     st.markdown('Hukum : Enni Soerjati, Carolina')
     st.markdown('Perikanan : Siswoyo, Tim Mahasiswa SEAMEO QIS UNPAD - Eros, Aisiah, Rahma, Rafif, Mira, Abian, Bagus, Aidil, Rohmad dkk')
     st.markdown('Peternakan  : Achmad, Mahasiswa PENS - Anifa, Trifosha, dan Industri')
     st.markdown('STEM : Indrawati')
+    st.markdown('Elektronika dan Otomotif : Eko Subiantoro, Wahyu Purnomo, BBPPMPV BoE Malang')
+    st.markdown('Mesin CNC : Joko Suseno, BBPPMPV BMTI Bandung')
     st.markdown(
         '''
-        <small>v1.31 - October 15th 2023 Version</small> <br />
+        <small>v1.32 - October 24th 2023 Version</small> <br />
         <small>Disiapkan oleh https://www.gaeni.org dan SEAQIS</small>
         ''',
         unsafe_allow_html=True)
