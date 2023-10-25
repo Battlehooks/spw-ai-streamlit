@@ -80,9 +80,12 @@ def main() :
     if btn:
         btn_status = True
     if prompt:
-        result = retriever({
-            'query': prompt
-        })
+        col1, col2, col3 = st.columns(3)
+        with col2 :
+            with st.spinner('Wait for result') :
+                result = retriever({
+                    'query': prompt
+                })
     if result:
         if len(result['source_documents']) < 1:
             st.markdown(
