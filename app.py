@@ -69,7 +69,7 @@ def main() :
     st.markdown('Kakao : Dini, Halimah, Nur Fazila')
     st.markdown(
         '''
-        <small>v1.42 - October 25th 2023 Version</small> <br />
+        <small>v1.56 - October 25th 2023 Version</small> <br />
         <small>Disiapkan oleh https://www.gaeni.org dan SEAQIS dan Tim Metaverse BMTI</small>
         ''',
         unsafe_allow_html=True)
