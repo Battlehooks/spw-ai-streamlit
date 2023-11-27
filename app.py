@@ -55,7 +55,7 @@ def answer_question(result):
                 f'<b><u>Jawaban {i + 1}</b></u>', unsafe_allow_html=True)
             text = res.metadata['Jawaban']
             text = text.strip()
-            st.markdown(text)
+            st.markdown(text, unsafe_allow_html=True)
 
 def main() :
     st.title('GEMA-GPT')
