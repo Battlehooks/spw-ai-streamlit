@@ -52,7 +52,7 @@ def answer_question(result):
         for i, res in enumerate(result['source_documents'][1:]):
             st.markdown('\n\n')
             st.markdown(
-                f'<b><u>Jawaban {i + 1}</b></u>', unsafe_allow_html=True)
+                f'<h3><b><u>Jawaban {i + 1}</b></u></h3>', unsafe_allow_html=True)
             text = res.metadata['Jawaban']
             text = text.strip()
             st.markdown(text, unsafe_allow_html=True)
