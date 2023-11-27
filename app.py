@@ -8,13 +8,14 @@ from db import InsertData
 import os
 
 api_key = st.secrets['OPENAI_API_KEY']
-model_name = 'ft:gpt-3.5-turbo-0613:personal::7sLvXR18'
+model_name = 'gpt-4-1106-preview'
 
 fs = LocalFileStore('retriever/cache_embed')
 embeddings = OpenAIEmbeddings(openai_api_key=api_key)
 cache_embed = CacheBackedEmbeddings.from_bytes_store(embeddings, fs, namespace = embeddings.model)
 db = FAISS.load_local('retriever/FAISS_SPW', embeddings=cache_embed)
-model = ChatOpenAI(openai_api_key=api_key, temperature=0.06)
+model = ChatOpenAI(openai_api_key=api_key,
+                   temperature=0.06, model_name=model_name)
 
 retriever = RetrievalQA.from_chain_type(
     llm=model,
