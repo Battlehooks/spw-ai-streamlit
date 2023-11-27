@@ -43,7 +43,7 @@ def answer_question(result):
     st.divider()
     st.subheader('Jawaban dari AI')
     st.markdown('''
-        <small> Keterangan : Jawaban dari AI adalah jawaban yang diekstrapolasi oleh GPT 3.5 dari database kami.</small> <br />
+        <small> Keterangan : Jawaban dari AI adalah jawaban yang diekstrapolasi oleh GPT-4 Turbo dari database kami.</small> <br />
         <small> Sehingga akurasi dalam ilmu pengetahuan mutlak akan sangat rendah dan kemungkinan tidak akurat. </small> 
     ''', unsafe_allow_html=True)
     st.markdown(result['result'], unsafe_allow_html=True)
