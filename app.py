@@ -20,7 +20,7 @@ retriever = RetrievalQA.from_chain_type(
     llm=model,
     chain_type='stuff',
     retriever=db.as_retriever(
-        search_kwargs={'k': 5, 'score_threshold': .32}
+        search_kwargs={'k': 5, 'score_threshold': .22}
     ),
     return_source_documents=True
 )
@@ -35,7 +35,8 @@ st.markdown('''
 
 def answer_question(result):
     st.subheader('Jawaban Utama')
-    primary = result['source_documents'][0].page_content
+    print(result)
+    primary = result['source_documents'][0].metadata['Jawaban']
     primary = primary.split('[SEP]')[-1].strip()
     st.markdown(primary, unsafe_allow_html=True)
     st.divider()
@@ -52,7 +53,7 @@ def answer_question(result):
             st.markdown('\n\n')
             st.markdown(
                 f'<b><u>Jawaban {i + 1}</b></u>', unsafe_allow_html=True)
-            text = res.page_content.split('[SEP]')[-1]
+            text = res.metadata['Jawaban']
             text = text.strip()
             st.markdown(text)
 
@@ -67,9 +68,10 @@ def main() :
     st.markdown('Elektronika dan Otomotif : Eko Subiantoro, Wahyu Purnomo, BBPPMPV BoE Malang')
     st.markdown('Mesin CNC : Joko Suseno, BBPPMPV BMTI Bandung')
     st.markdown('Kakao : Dini, Halimah, Nur Fazila')
+    st.markdown('GCC 2023 : Rizky dan Gatot HP')
     st.markdown(
         '''
-        <small>v1.56 - October 25th 2023 Version</small> <br />
+        <small>v1.66 - November 27th 2023 Version</small> <br />
         <small>Disiapkan oleh https://www.gaeni.org dan SEAQIS dan Tim Metaverse BMTI</small>
         ''',
         unsafe_allow_html=True)
