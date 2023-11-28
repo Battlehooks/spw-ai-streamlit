@@ -1,7 +1,8 @@
-langchain
+langchain==0.0.341
 openai==0.28.1
+langchain-core==0.0.6
 streamlit
-faiss-cpu
+faiss-cpu==1.7.4
 tiktoken
 mysql-connector
 datetime
