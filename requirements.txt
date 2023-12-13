@@ -1,7 +1,7 @@
 langchain
 langchain-community
 openai==0.28.1
-langchain-core==0.0.6
+langchain-core
 streamlit
 faiss-cpu==1.7.4
 tiktoken
