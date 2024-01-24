@@ -2,13 +2,14 @@ import streamlit as st
 from langchain.chains import RetrievalQA
 from langchain.vectorstores import FAISS
 from langchain.chat_models import ChatOpenAI
+from langchain.schema import HumanMessage, SystemMessage
 from langchain.embeddings import OpenAIEmbeddings, CacheBackedEmbeddings
 from langchain.storage import LocalFileStore
 from db import InsertData
 import os
 
 api_key = st.secrets['OPENAI_API_KEY']
-model_name = 'gpt-4-1106-preview'
+model_name = 'gpt-4'
 
 fs = LocalFileStore('retriever/cache_embed')
 embeddings = OpenAIEmbeddings(openai_api_key=api_key)
@@ -35,11 +36,23 @@ st.markdown('''
 
 
 def answer_question(result):
-    st.subheader('Jawaban Utama')
-    print(result)
     primary = result['source_documents'][0].metadata['Jawaban']
     primary = primary.split('[SEP]')[-1].strip()
-    st.markdown(primary, unsafe_allow_html=True)
+    msg = [
+        SystemMessage(
+            content='Anda adalah asisten yang baik, tolong bantu saya untuk menjabarkan kembali pesan yang saya berikan dengan lebih detail dan lebih runtut dengan bahasa anda sendiri. Cantumkan juga referensi AKTUAL darimana anda mendapatkan sumber / kata-kata tersebut'
+        ),
+        HumanMessage(
+            content=primary
+        )
+    ]
+    col1, col2, col3 = st.columns(3)
+    with col2:
+        with st.spinner('Wait for result'):
+            primary_remastered = model(msg).content
+    st.subheader('Jawaban Utama')
+    st.markdown(primary_remastered, unsafe_allow_html=True)
+    print(result)
     st.divider()
     st.subheader('Jawaban dari AI')
     st.markdown('''
