@@ -85,7 +85,7 @@ def main() :
     st.markdown('GCC 2023 : Rizky dan Gatot HP')
     st.markdown(
         '''
-        <small>v1.66 - November 27th 2023 Version</small> <br />
+        <small>v1.89 - January 24th 2024 Version</small> <br />
         <small>Disiapkan oleh https://www.gaeni.org dan SEAQIS dan Tim Metaverse BMTI</small>
         ''',
         unsafe_allow_html=True)
