@@ -40,18 +40,21 @@ def answer_question(result):
     primary = primary.split('[SEP]')[-1].strip()
     msg = [
         SystemMessage(
-            content='Anda adalah asisten yang baik, tolong bantu saya untuk menjabarkan kembali pesan yang saya berikan dengan lebih detail dan lebih runtut dengan bahasa anda sendiri. Cantumkan juga referensi AKTUAL darimana anda mendapatkan sumber / kata-kata tersebut'
+            content='Anda adalah asisten yang baik, tolong bantu saya untuk menjabarkan kembali pesan yang saya berikan dengan lebih detail dan lebih runtut dengan bahasa anda sendiri. Cantumkan juga referensi AKTUAL darimana anda mendapatkan sumber / kata-kata tersebut, apabila saya yang memberikan link tersebut maka tidak perlu menyebutkan sumber / referensi. Apabila ada akronim yang anda tidak yakin 100% maka mohon untuk tidak menjabarkan akronim tersebut.'
         ),
         HumanMessage(
             content=primary
         )
     ]
     col1, col2, col3 = st.columns(3)
-    with col2:
-        with st.spinner('Wait for result'):
-            primary_remastered = model(msg).content
+    primary_remastered = None
+    if not '<img' in primary.lower():
+        with col2:
+            with st.spinner('Wait for result'):
+                primary_remastered = model(msg).content
     st.subheader('Jawaban Utama')
-    st.markdown(primary_remastered, unsafe_allow_html=True)
+    st.markdown(primary_remastered if not '<img' in primary.lower()
+                else primary, unsafe_allow_html=True)
     print(result)
     st.divider()
     st.subheader('Jawaban dari AI')
@@ -85,8 +88,8 @@ def main() :
     st.markdown('GCC 2023 : Rizky dan Gatot HP')
     st.markdown(
         '''
-        <small>v1.89 - January 24th 2024 Version</small> <br />
-        <small>Disiapkan oleh https://www.gaeni.org dan SEAQIS dan Tim Metaverse BMTI</small>
+        <small>v2.00 - February 4th 2024 Version</small> <br />
+        <small>Disiapkan oleh https://www.gaeni.org, SEAQIS dan Tim Metaverse BMTI</small>
         ''',
         unsafe_allow_html=True)
     result = False
