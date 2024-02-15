@@ -35,15 +35,17 @@ st.markdown('''
 ''', unsafe_allow_html=True)
 
 
-def answer_question(result):
+def answer_question(result, question):
     primary = result['source_documents'][0].metadata['Jawaban']
     primary = primary.split('[SEP]')[-1].strip()
+    question_new = question.split(' ')[1:]
+    question_new = ' '.join(question_new)
     msg = [
         SystemMessage(
             content='Anda adalah asisten yang baik, tolong bantu saya untuk menjabarkan kembali pesan yang saya berikan dengan lebih detail dan lebih runtut dengan bahasa anda sendiri. Cantumkan juga referensi AKTUAL darimana anda mendapatkan sumber / kata-kata tersebut, apabila saya yang memberikan link tersebut maka tidak perlu menyebutkan sumber / referensi. Apabila ada akronim yang anda tidak yakin 100% maka mohon untuk tidak menjabarkan akronim tersebut.'
         ),
         HumanMessage(
-            content=primary
+            content=f'{question_new} {primary}'
         )
     ]
     col1, col2, col3 = st.columns(3)
@@ -119,7 +121,7 @@ def main() :
                 'Berikan pertanyaan yang lebih spesifik dan tepat.'
             )
         else:
-            answer_question(result)
+            answer_question(result, prompt)
             answer = InsertData(prompt, len(
                 result['source_documents']), result['result'])
             answer.commit()
