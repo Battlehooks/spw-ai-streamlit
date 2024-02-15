@@ -45,7 +45,7 @@ def answer_question(result, question):
             content='Anda adalah asisten yang baik, tolong bantu saya untuk menjabarkan kembali pesan yang saya berikan dengan lebih detail dan lebih runtut dengan bahasa anda sendiri. Cantumkan juga referensi AKTUAL darimana anda mendapatkan sumber / kata-kata tersebut, apabila saya yang memberikan link tersebut maka tidak perlu menyebutkan sumber / referensi. Apabila ada akronim yang anda tidak yakin 100% maka mohon untuk tidak menjabarkan akronim tersebut.'
         ),
         HumanMessage(
-            content=f'{question_new} {primary}'
+            content=f'{question_new} adalah {primary}'
         )
     ]
     col1, col2, col3 = st.columns(3)
