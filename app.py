@@ -84,8 +84,8 @@ def main() :
     st.markdown('Perikanan : Siswoyo, Tim Mahasiswa SEAMEO QIS UNPAD - Eros, Aisyah, Rahma, Rafif, Mira, Abian, Bagus, Aidil, Rohmad dkk')
     st.markdown('Peternakan  : Achmad, Mahasiswa PENS - Anifa, Trifosha, dan Industri')
     st.markdown('STEM : Indrawati')
-    st.markdown('Elektronika dan Otomotif : Eko Subiantoro, Wahyu Purnomo, BBPPMPV BoE Malang')
-    st.markdown('Mesin CNC : Joko Suseno, BBPPMPV BMTI Bandung')
+    st.markdown(
+        'Elektronika dan Otomotif : Eko Subiantoro, Wahyu Purnomo, BBPPMPV BoE Malang')
     st.markdown('Kakao : Dini, Halimah, Nur Fazila')
     st.markdown('GCC 2023 : Rizky dan Gatot HP')
     st.markdown(
