@@ -14,7 +14,8 @@ model_name = 'gpt-4'
 fs = LocalFileStore('retriever/cache_embed')
 embeddings = OpenAIEmbeddings(openai_api_key=api_key)
 cache_embed = CacheBackedEmbeddings.from_bytes_store(embeddings, fs, namespace = embeddings.model)
-db = FAISS.load_local('retriever/FAISS_SPW', embeddings=cache_embed)
+db = FAISS.load_local('retriever/FAISS_SPW', embeddings=cache_embed,
+                      allow_dangerous_deserialization=True)
 model = ChatOpenAI(openai_api_key=api_key,
                    temperature=0.06, model=model_name)
 
